@@ -18,11 +18,19 @@ public class demoqa_Test {
     @Test
     public void testDemoqa() throws InterruptedException {
         Driver.getDriver().get(ConfigReader.getProperty("demoqaUrl"));
+        String actualTitle = Driver.getDriver().getTitle();
+        String expectedTitle = "ToolsQA";
+        Assert.assertEquals(expectedTitle, actualTitle);
         actions.sendKeys(Keys.PAGE_DOWN).
                 moveToElement(Driver.getDriver().findElement(By.xpath("//*[contains(text(),'Forms')]"))).perform();
         Thread.sleep(2000);
         Driver.getDriver().findElement(By.xpath("//h5[contains(text(),'Forms')]")).click();
+        String actualUrl = Driver.getDriver().getCurrentUrl();
+        String expectedUrl = "https://demoqa.com/forms";
+        Assert.assertEquals(actualUrl,expectedUrl);
         page.practiceFormButton.click();
+        WebElement practiceFormTitle = Driver.getDriver().findElement(By.xpath("//*[text()='Student Registration Form']"));
+        Assert.assertTrue(practiceFormTitle.isDisplayed());
         page.nameBox.sendKeys("Nurullah");
         page.lastNameBox.sendKeys("Karakose");
         page.eMailBox.sendKeys("karakosenurullah@gmail.com");
@@ -42,10 +50,6 @@ public class demoqa_Test {
         actions.sendKeys(Keys.TAB).sendKeys("NCR").sendKeys(Keys.TAB).sendKeys(Keys.TAB).sendKeys("Delhi").perform();
         actions.sendKeys(Keys.TAB).sendKeys(Keys.ENTER).perform();
         Assert.assertTrue(page.submittingMessage.isDisplayed());
-
-
-
-
 
 
     }
