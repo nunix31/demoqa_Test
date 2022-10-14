@@ -2,6 +2,7 @@ package tests;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.testng.Assert;
 import org.testng.annotations.Test;
@@ -34,6 +35,9 @@ public class demoqa_Test {
         page.subjectsBox.click();
         actions.sendKeys("Computer Science").sendKeys(Keys.ENTER).perform();
         page.hobbiesSportButton.click();
+        WebElement chooseFile = Driver.getDriver().findElement(By.xpath("//*[@id='uploadPicture']"));
+        String dosyaYolu = "C:\\Users\\Nurullah Karaköse\\Desktop\\61b9f1ad0c3fb-5626.jpg";
+        chooseFile.sendKeys(dosyaYolu);
         page.currentAdressBox.sendKeys("Antakya/HATAY");
         actions.sendKeys(Keys.TAB).sendKeys("NCR").sendKeys(Keys.TAB).sendKeys(Keys.TAB).sendKeys("Delhi").perform();
         actions.sendKeys(Keys.TAB).sendKeys(Keys.ENTER).perform();
